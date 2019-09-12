@@ -1,4 +1,4 @@
-ARG AGOLAWEB_IMAGE="agola-web"
+ARG AGOLAWEB_IMAGE="devops2build/agola-web"
 
 FROM $AGOLAWEB_IMAGE as agola-web
 
@@ -13,6 +13,10 @@ WORKDIR /agola
 
 # use go modules
 ENV GO111MODULE=on
+# Enable the go modules feature
+#export GO111MODULE=on
+# Set the GOPROXY environment variable
+ENV GOPROXY=https://goproxy.io
 
 # only copy go.mod and go.sum
 COPY go.mod .
@@ -40,9 +44,12 @@ FROM debian:buster AS agola
 
 WORKDIR /
 
+RUN echo "deb http://mirrors.163.com/debian/ buster main contrib non-free" > /etc/apt/sources.list
+RUN echo "deb http://mirrors.163.com/debian/ buster-updates main contrib non-free" >> /etc/apt/sources.list
+
 # Install git needed by gitserver
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    ca-certificates \
+    ca-certificates tree wget procps net-tools \
     git \
     && rm -rf /var/lib/apt/lists/*
 

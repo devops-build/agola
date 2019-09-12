@@ -41,7 +41,7 @@ import (
 	uuid "github.com/satori/go.uuid"
 
 	"github.com/gorilla/mux"
-	sockaddr "github.com/hashicorp/go-sockaddr"
+	//sockaddr "github.com/hashicorp/go-sockaddr"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 	errors "golang.org/x/xerrors"
@@ -1377,10 +1377,31 @@ func NewExecutor(c *config.Executor) (*Executor, error) {
 
 	// TODO(sgotti) now the first available private ip will be used and the executor will bind to the wildcard address
 	// improve this to let the user define the bind and the advertize address
-	addr, err := sockaddr.GetPrivateIP()
+	addrs, err := net.InterfaceAddrs()
+
 	if err != nil {
-		return nil, errors.Errorf("cannot discover executor listen address: %w", err)
+		fmt.Println(err)
+		os.Exit(1)
 	}
+
+	addr := "127.0.1.2"
+	for _, address := range addrs {
+
+		// 检查ip地址判断是否回环地址
+		if ipnet, ok := address.(*net.IPNet); ok && !ipnet.IP.IsLoopback() {
+			if ipnet.IP.To4() != nil {
+				//fmt.Println(ipnet.IP.String())
+				addr = ipnet.IP.String()
+			}
+
+		}
+	}
+
+	
+	//addr, err := sockaddr.GetPrivateIP()
+	//if err != nil {
+	//	return nil, errors.Errorf("cannot discover executor listen address: %w", err)
+	//}
 	if addr == "" {
 		return nil, errors.Errorf("cannot discover executor listen address")
 	}
