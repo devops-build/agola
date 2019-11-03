@@ -15,7 +15,7 @@ local dind_runtime(arch) = {
     {
       image: 'docker:stable-dind',
       privileged: true,
-      entrypoint: 'dockerd --bip 172.18.0.1/16',
+      entrypoint: 'dockerd --bip 172.17.0.1/16',
     },
   ],
 };
@@ -25,6 +25,7 @@ local task_build_go(version, arch) = {
   runtime: go_runtime(version, arch),
   environment: {
     GO111MODULE: 'on',
+    GOPROXY: 'https://goproxy.io',
   },
   steps: [
     { type: 'clone' },
@@ -47,6 +48,7 @@ local task_build_docker_tests(version, arch) = {
   runtime: go_runtime(version, arch),
   environment: {
     GO111MODULE: 'on',
+    GOPROXY: 'https://goproxy.io',
   },
   steps: [
     { type: 'clone' },
@@ -137,7 +139,7 @@ local task_build_push_images(name, target, push) =
               |||,
             },
             { type: 'restore_workspace', dest_dir: '.' },
-            { type: 'run', name: 'integration tests', command: 'AGOLA_BIN_DIR="./bin" GITEA_PATH=${PWD}/bin/gitea DOCKER_BRIDGE_ADDRESS="172.18.0.1" ./bin/integration-tests -test.parallel 1 -test.v' },
+            { type: 'run', name: 'integration tests', command: 'AGOLA_BIN_DIR="./bin" GITEA_PATH=${PWD}/bin/gitea DOCKER_BRIDGE_ADDRESS="172.17.0.1" ./bin/integration-tests -test.parallel 1 -test.v' },
           ],
           depends: [
             'build go 1.13 amd64',
