@@ -1,4 +1,5 @@
-ARG AGOLAWEB_IMAGE="devops2build/agola-web"
+# ARG AGOLAWEB_IMAGE="devops2build/agola-web"
+ARG AGOLAWEB_IMAGE="registry.cn-shenzhen.aliyuncs.com/sam-ns1/ct-agola-web"
 
 FROM $AGOLAWEB_IMAGE as agola-web
 
@@ -13,9 +14,6 @@ WORKDIR /agola
 
 # use go modules
 ENV GO111MODULE=on
-# Enable the go modules feature
-#export GO111MODULE=on
-# Set the GOPROXY environment variable
 ENV GOPROXY=https://goproxy.io
 
 # only copy go.mod and go.sum
@@ -27,7 +25,9 @@ RUN go mod download
 
 # builds the agola binaries
 FROM build_base AS server_builder
-
+# use go modules
+ENV GO111MODULE=on
+ENV GOPROXY=https://goproxy.io
 # copy all the sources
 COPY . .
 
