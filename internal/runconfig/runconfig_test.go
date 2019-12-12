@@ -23,7 +23,7 @@ import (
 	"agola.io/agola/internal/util"
 	rstypes "agola.io/agola/services/runservice/types"
 	"agola.io/agola/services/types"
-	"k8s.io/apimachinery/pkg/api/resource"
+	//"k8s.io/apimachinery/pkg/api/resource"
 
 	"github.com/google/go-cmp/cmp"
 	errors "golang.org/x/xerrors"
@@ -729,7 +729,7 @@ func TestGenRunConfig(t *testing.T) {
 												},
 												config.Volume{
 													Path:  "/mnt/vol01",
-													TmpFS: &config.VolumeTmpFS{Size: resource.NewQuantity(1024*1024*1024, resource.BinarySI)},
+													//TmpFS: &config.VolumeTmpFS{Size: resource.NewQuantity(1024*1024*1024, resource.BinarySI)},
 												},
 											},
 										},

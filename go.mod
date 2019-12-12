@@ -62,7 +62,6 @@ require (
 	gopkg.in/src-d/go-billy.v4 v4.3.2
 	gopkg.in/src-d/go-git.v4 v4.13.1
 	gopkg.in/yaml.v2 v2.2.4
-	k8s.io/apimachinery v0.0.0-20180904193909-def12e63c512
 //k8s.io/api v0.0.0-20191016110408-35e52d86657a
 //k8s.io/apimachinery v0.0.0-20191004115801-a2eda9f80ab8
 //k8s.io/client-go v0.0.0-20191016111102-bec269661e48

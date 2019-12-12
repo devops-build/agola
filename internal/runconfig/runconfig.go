@@ -51,9 +51,9 @@ func genRuntime(c *config.Config, ce *config.Runtime, variables map[string]strin
 
 			if ccVol.TmpFS != nil {
 				var size int64
-				if ccVol.TmpFS.Size != nil {
+				/* if ccVol.TmpFS.Size != nil {
 					size = ccVol.TmpFS.Size.Value()
-				}
+				} */
 				container.Volumes[i].TmpFS = &rstypes.VolumeTmpFS{
 					Size: size,
 				}

@@ -26,7 +26,7 @@ import (
 	"github.com/ghodss/yaml"
 	"github.com/google/go-jsonnet"
 	errors "golang.org/x/xerrors"
-	"k8s.io/apimachinery/pkg/api/resource"
+	//"k8s.io/apimachinery/pkg/api/resource"
 )
 
 const (
@@ -103,7 +103,7 @@ type Volume struct {
 }
 
 type VolumeTmpFS struct {
-	Size *resource.Quantity `json:"size"`
+	//Size *resource.Quantity `json:"size"`
 }
 
 type Run struct {
