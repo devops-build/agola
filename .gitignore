@@ -9,4 +9,4 @@ vendor/
 bin/
 tools/
 webbundle/bindata.go
-agola
+#agola
