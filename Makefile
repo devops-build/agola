@@ -34,7 +34,8 @@ TOOLBOX_ARCHS=amd64 arm64
 all: build
 
 .PHONY: build
-build: agola agola-toolbox
+# build: agola agola-toolbox
+build: agola 
 
 .PHONY: test
 test: gocovmerge
