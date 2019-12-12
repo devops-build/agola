@@ -48,7 +48,7 @@ local task_build_docker_tests(version, arch) = {
   runtime: go_runtime(version, arch),
   environment: {
     GO111MODULE: 'on',
-    GOPROXY: 'https://goproxy.io',
+    GOPROXY: 'https://goproxy.cn',
   },
   steps: [
     { type: 'clone' },
