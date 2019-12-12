@@ -1,0 +1,12 @@
+.settings
+*.classpath
+*.project
+*.iml
+.idea
+.vscode
+
+vendor/
+bin/
+tools/
+webbundle/bindata.go
+agola
