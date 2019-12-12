@@ -46,26 +46,26 @@ agola: $(AGOLA_DEPS)
 	GO111MODULE=on go build $(if $(AGOLA_TAGS),-tags "$(AGOLA_TAGS)") -ldflags $(LD_FLAGS) -o $(PROJDIR)/bin/agola $(REPO_PATH)/cmd/agola
 
 # toolbox MUST be statically compiled so it can be used in any image for that arch
-.PHONY: agola-toolbox
-agola-toolbox:
-	$(foreach GOOS, $(TOOLBOX_OSES),\
-	$(foreach GOARCH, $(TOOLBOX_ARCHS), $(shell GOOS=$(GOOS) GOARCH=$(GOARCH) CGO_ENABLED=0 GO111MODULE=on go build $(if $(AGOLA_TAGS),-tags "$(AGOLA_TAGS)") -ldflags $(LD_FLAGS) -o $(PROJDIR)/bin/agola-toolbox-$(GOOS)-$(GOARCH) $(REPO_PATH)/cmd/toolbox)))
+# .PHONY: agola-toolbox
+# agola-toolbox:
+# 	$(foreach GOOS, $(TOOLBOX_OSES),\
+# 	$(foreach GOARCH, $(TOOLBOX_ARCHS), $(shell GOOS=$(GOOS) GOARCH=$(GOARCH) CGO_ENABLED=0 GO111MODULE=on go build $(if $(AGOLA_TAGS),-tags "$(AGOLA_TAGS)") -ldflags $(LD_FLAGS) -o $(PROJDIR)/bin/agola-toolbox-$(GOOS)-$(GOARCH) $(REPO_PATH)/cmd/toolbox)))
 
-.PHONY: go-bindata
-go-bindata:
-	GOBIN=$(PROJDIR)/tools/bin go install github.com/go-bindata/go-bindata/go-bindata
+# .PHONY: go-bindata
+# go-bindata:
+# 	GOBIN=$(PROJDIR)/tools/bin go install github.com/go-bindata/go-bindata/go-bindata
 
 .PHONY: gocovmerge
 gocovmerge:
 	GOBIN=$(PROJDIR)/tools/bin go install github.com/wadey/gocovmerge
 
-webbundle/bindata.go: go-bindata $(WEBDISTPATH)
-	./tools/bin/go-bindata -o webbundle/bindata.go -tags webbundle -pkg webbundle -prefix "$(WEBDISTPATH)" -nocompress=true "$(WEBDISTPATH)/..."
+# webbundle/bindata.go: go-bindata $(WEBDISTPATH)
+# 	./tools/bin/go-bindata -o webbundle/bindata.go -tags webbundle -pkg webbundle -prefix "$(WEBDISTPATH)" -nocompress=true "$(WEBDISTPATH)/..."
 
 .PHONY: docker-agola
 docker-agola:
 	docker build --target agola . -t agola
 
-.PHONY: docker-agolademo
-docker-agolademo:
-	docker build . -t agolademo
+# .PHONY: docker-agolademo
+# docker-agolademo:
+# 	docker build . -t agolademo
