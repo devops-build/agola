@@ -25,7 +25,7 @@ local task_build_go(version, arch) = {
   runtime: go_runtime(version, arch),
   environment: {
     GO111MODULE: 'on',
-    GOPROXY: 'https://goproxy.io',
+    GOPROXY: 'https://goproxy.cn',
   },
   steps: [
     { type: 'clone' },
@@ -109,7 +109,7 @@ local task_build_push_images(name, target, push) =
         [
           task_build_go(version, arch),
         ]
-        for version in ['1.12', '1.13']
+        for version in [/* '1.12', */ '1.13']
         for arch in ['amd64' /*, 'arm64' */]
       ]) + [
         {
