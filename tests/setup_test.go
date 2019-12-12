@@ -30,7 +30,7 @@ import (
 	slog "agola.io/agola/internal/log"
 	"agola.io/agola/internal/services/config"
 	"agola.io/agola/internal/services/configstore"
-	"agola.io/agola/internal/services/executor"
+	//"agola.io/agola/internal/services/executor"
 	"agola.io/agola/internal/services/gateway"
 	"agola.io/agola/internal/services/gitserver"
 	"agola.io/agola/internal/services/notification"

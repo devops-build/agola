@@ -11,9 +11,9 @@ require (
 	github.com/containerd/continuity v0.0.0-20190827140505-75bee3e2ccb6 // indirect
 	github.com/creack/pty v1.1.9 // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
-	github.com/docker/distribution v2.7.1+incompatible // indirect
-	github.com/docker/docker v1.13.1
-	github.com/docker/spdystream v0.0.0-20181023171402-6480d4af844c // indirect
+	//github.com/docker/distribution v2.7.1+incompatible // indirect
+	//github.com/docker/docker v1.13.1
+	//github.com/docker/spdystream v0.0.0-20181023171402-6480d4af844c // indirect
 	github.com/dustin/go-humanize v1.0.0 // indirect
 	github.com/elazarl/go-bindata-assetfs v1.0.0
 	github.com/elazarl/goproxy v0.0.0-20190421051319-9d40249d3c2f // indirect
@@ -62,10 +62,11 @@ require (
 	gopkg.in/src-d/go-billy.v4 v4.3.2
 	gopkg.in/src-d/go-git.v4 v4.13.1
 	gopkg.in/yaml.v2 v2.2.4
-	k8s.io/api v0.0.0-20191016110408-35e52d86657a
-	k8s.io/apimachinery v0.0.0-20191004115801-a2eda9f80ab8
-	k8s.io/client-go v0.0.0-20191016111102-bec269661e48
-	k8s.io/utils v0.0.0-20190801114015-581e00157fb1
+	k8s.io/apimachinery v0.0.0-20180904193909-def12e63c512
+//k8s.io/api v0.0.0-20191016110408-35e52d86657a
+//k8s.io/apimachinery v0.0.0-20191004115801-a2eda9f80ab8
+//k8s.io/client-go v0.0.0-20191016111102-bec269661e48
+//k8s.io/utils v0.0.0-20190801114015-581e00157fb1
 )
 
 replace github.com/docker/docker v1.13.1 => github.com/docker/engine v0.0.0-20181106193140-f5749085e9cb

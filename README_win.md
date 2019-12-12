@@ -3,7 +3,8 @@ go build D:\Development\Project\devcn.fun\g-dev1\agola\cmd\agola
 
 go build D:\Development\Project\devcn.fun\g-dev1\agola\cmd\toolbox
 
-
+export GO111MODULE=on
+export GOPROXY=https://goproxy.cn
 
 
 ```
