@@ -117,7 +117,7 @@ local task_build_push_images(name, target, push) =
           runtime: dind_runtime('amd64'),
           steps: [
             { type: 'restore_workspace', dest_dir: '.' },
-            { type: 'run', command: 'SKIP_K8S_TESTS=1 AGOLA_TOOLBOX_PATH="./bin" ./bin/docker-tests -test.parallel 1 -test.v' },
+            //{ type: 'run', command: 'SKIP_K8S_TESTS=1 AGOLA_TOOLBOX_PATH="./bin" ./bin/docker-tests -test.parallel 1 -test.v' },
           ],
           depends: [
             'build go 1.13 amd64',
@@ -127,19 +127,19 @@ local task_build_push_images(name, target, push) =
           name: 'integration tests',
           runtime: dind_runtime('amd64'),
           steps: [
-            { type: 'run', command: 'apk update && apk add bash git openssh-keygen' },
-            {
-              type: 'run',
-              name: 'install alpine glibc package',
-              command: |||
-                apk --no-cache add ca-certificates wget
-                wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
-                wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.29-r0/glibc-2.29-r0.apk
-                apk add glibc-2.29-r0.apk
-              |||,
-            },
-            { type: 'restore_workspace', dest_dir: '.' },
-            { type: 'run', name: 'integration tests', command: 'AGOLA_BIN_DIR="./bin" GITEA_PATH=${PWD}/bin/gitea DOCKER_BRIDGE_ADDRESS="172.17.0.1" ./bin/integration-tests -test.parallel 1 -test.v' },
+            // { type: 'run', command: 'apk update && apk add bash git openssh-keygen' },
+            // {
+            //   type: 'run',
+            //   name: 'install alpine glibc package',
+            //   command: |||
+            //     apk --no-cache add ca-certificates wget
+            //     wget -q -O /etc/apk/keys/sgerrand.rsa.pub https://alpine-pkgs.sgerrand.com/sgerrand.rsa.pub
+            //     wget https://github.com/sgerrand/alpine-pkg-glibc/releases/download/2.29-r0/glibc-2.29-r0.apk
+            //     apk add glibc-2.29-r0.apk
+            //   |||,
+            // },
+            // { type: 'restore_workspace', dest_dir: '.' },
+            // { type: 'run', name: 'integration tests', command: 'AGOLA_BIN_DIR="./bin" GITEA_PATH=${PWD}/bin/gitea DOCKER_BRIDGE_ADDRESS="172.17.0.1" ./bin/integration-tests -test.parallel 1 -test.v' },
           ],
           depends: [
             'build go 1.13 amd64',
@@ -167,22 +167,22 @@ local task_build_push_images(name, target, push) =
             ref: '#refs/pull/\\d+/head#',
           },
         },
-        task_build_push_images('test build docker "agolademo" image', 'agolademo', false) + {
+        /* task_build_push_images('test build docker "agolademo" image', 'agolademo', false) + {
           when: {
             branch: '#.*#',
             ref: '#refs/pull/\\d+/head#',
           },
-        },
+        }, */
         task_build_push_images('build and push docker "agola" image', 'agola', true) + {
           when: {
             tag: '#v.*#',
           },
         },
-        task_build_push_images('build and push docker "agolademo" image', 'agolademo', true) + {
+        /* task_build_push_images('build and push docker "agolademo" image', 'agolademo', true) + {
           when: {
             tag: '#v.*#',
           },
-        },
+        }, */
       ],
     },
   ],
