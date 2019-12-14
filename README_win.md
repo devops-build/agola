@@ -6,6 +6,9 @@ go build D:\Development\Project\devcn.fun\g-dev1\agola\cmd\toolbox
 export GO111MODULE=on
 export GOPROXY=https://goproxy.cn
 
+$ ./agola  --token "admintoken" -u $api remotesource list
+5f8c8e79-5931-49c6-bb9f-285995066b47: Name: gitea
+
 
 ```
 go: finding github.com/docker/docker v1.13.1
