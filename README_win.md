@@ -14,6 +14,7 @@ export GOPROXY=https://goproxy.cn
  2002  ./agola  --token "admintoken" -u $api org member list -n org1
  2003  ./agola  --token "admintoken" -u $api project list --parent user/sam
  2004  ./agola  --token "admintoken" -u $api run list --project aa9ed7eb-7a10-423e-8016-55b16051fc32
+./agola  --token "admintoken" -u $api projectgroup variable list --projectgroup user/sam #org/org01
 
 ```
 go: finding github.com/docker/docker v1.13.1
