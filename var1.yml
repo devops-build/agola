@@ -1,0 +1,4 @@
+- secret_name: secret-testing-02
+  secret_var: dockerpassword
+  when:
+    ref: '#/refs/pull/.*#'

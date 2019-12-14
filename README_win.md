@@ -6,6 +6,7 @@ go build D:\Development\Project\devcn.fun\g-dev1\agola\cmd\toolbox
 export GO111MODULE=on
 export GOPROXY=https://goproxy.cn
 
+##CMD-OPER
  1997  api=http://www2.devcn.fun:8000
  1998  ./agola  --token "admintoken" -u $api remotesource list
  1999  ./agola 
@@ -16,6 +17,21 @@ export GOPROXY=https://goproxy.cn
  2004  ./agola  --token "admintoken" -u $api run list --project aa9ed7eb-7a10-423e-8016-55b16051fc32
 ./agola  --token "admintoken" -u $api projectgroup variable list --projectgroup user/sam #org/org01
 
+
+## ADD-VAR
+api=http://www2.devcn.fun:8000
+group=user/sam
+varname=dockerpassword-02
+cmd=create
+./agola \
+--token "admintoken" -u $api \
+projectgroup variable $cmd \
+--projectgroup $group \
+--name $varname -f ./var1.yml
+    2019-12-14T17:03:56.567+0800    INFO    cmd/projectvariablecreate.go:142        creating project group variable
+    2019-12-14T17:03:56.871+0800    INFO    cmd/projectvariablecreate.go:147        project group variable "dockerpassword-02" created, ID: "589c0663-d119-4310-a1cd-b20fedfac490"
+
+======================
 ```
 go: finding github.com/docker/docker v1.13.1
 # github.com/mattn/go-sqlite3
