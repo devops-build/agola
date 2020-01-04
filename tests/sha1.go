@@ -56,5 +56,5 @@ func main() {
 	
 	str:= sha1s("Hello, Gopher!")
 	content := str[0 : 7] //len(str)-1]
-	fmt.Println(content)
+	fmt.Println("AA:"+content)
 }
