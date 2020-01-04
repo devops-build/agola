@@ -226,7 +226,7 @@ func GenRunConfigTasks(uuid util.UUIDGenerator, c *config.Config, runName string
 		uuid2:= util.DefaultUUIDGenerator{}
 		t := &rstypes.RunConfigTask{
 			//ID:                   uuid.New(ct.Name).String(),
-			ID:                   "task"+uuid2.Sha1sCut(uuid.New(ct.Name).String()),
+			ID:                   "tsk."+uuid2.Sha1sCut(uuid.New(ct.Name).String()),
 			Name:                 ct.Name,
 			Runtime:              genRuntime(c, ct.Runtime, variables),
 			Environment:          tEnv,
