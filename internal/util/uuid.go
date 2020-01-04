@@ -16,6 +16,8 @@ package util
 
 import (
 	uuid "github.com/satori/go.uuid"
+	"crypto/sha1"
+	"encoding/hex"
 )
 
 type UUIDGenerator interface {
@@ -38,4 +40,14 @@ type TestPrefixUUIDGenerator struct{ Prefix string }
 
 func (u TestPrefixUUIDGenerator) New(s string) uuid.UUID {
 	return uuid.NewV5(uuid.NamespaceDNS, u.Prefix+s)
+}
+
+func (u DefaultUUIDGenerator) Sha1sCut(s string) string {
+	r := sha1.Sum([]byte(s))
+	
+	str:= hex.EncodeToString(r[:])
+	content := str[0 : 7] //len(str)-1]
+	//return hex.EncodeToString(r[:])
+	
+	return content
 }
