@@ -191,7 +191,8 @@ func (h *ActionHandler) newRun(ctx context.Context, req *RunCreateRequest) (*typ
 		return nil, err
 	}
 	//TODO2
-	id := seq.String()
+	//id := seq.String()
+	id := seq.StringCut()
 	//uuid2:= util.DefaultUUIDGenerator{}
 	//id := "run."+uuid2.Sha1sCut(seq.String())
 
@@ -236,7 +237,8 @@ func (h *ActionHandler) recreateRun(ctx context.Context, req *RunCreateRequest) 
 		return nil, err
 	}
 	//TODO3
-	id := seq.String()
+	//id := seq.String()
+	id := seq.StringCut()
 	//uuid2:= util.DefaultUUIDGenerator{}
 	//id := "run."+uuid2.Sha1sCut(seq.String())
 
