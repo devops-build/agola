@@ -34,7 +34,7 @@ type Sequence struct {
 
 func (s *Sequence) String() string {
 	// 1<<64 -1 in base 32 is "fvvvvvvvvvvvv" and uses 13 chars
-	return fmt.Sprintf("%013s-%013s", strconv.FormatUint(s.Epoch, 32), strconv.FormatUint(s.C, 32))
+	return fmt.Sprintf("%003s-%005s", strconv.FormatUint(s.Epoch, 32), strconv.FormatUint(s.C, 32))
 }
 
 func (s *Sequence) Reverse() *Sequence {

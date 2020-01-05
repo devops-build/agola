@@ -191,9 +191,9 @@ func (h *ActionHandler) newRun(ctx context.Context, req *RunCreateRequest) (*typ
 		return nil, err
 	}
 	//TODO2
-	//id := seq.String()
-	uuid2:= util.DefaultUUIDGenerator{}
-	id := "run."+uuid2.Sha1sCut(seq.String())
+	id := seq.String()
+	//uuid2:= util.DefaultUUIDGenerator{}
+	//id := "run."+uuid2.Sha1sCut(seq.String())
 
 	if err := runconfig.CheckRunConfigTasks(rcts); err != nil {
 		h.log.Errorf("check run config tasks failed: %+v", err)
@@ -236,9 +236,9 @@ func (h *ActionHandler) recreateRun(ctx context.Context, req *RunCreateRequest) 
 		return nil, err
 	}
 	//TODO3
-	//id := seq.String()
-	uuid2:= util.DefaultUUIDGenerator{}
-	id := "run."+uuid2.Sha1sCut(seq.String())
+	id := seq.String()
+	//uuid2:= util.DefaultUUIDGenerator{}
+	//id := "run."+uuid2.Sha1sCut(seq.String())
 
 	// fetch the existing runconfig and run
 	h.log.Infof("creating run from existing run")
