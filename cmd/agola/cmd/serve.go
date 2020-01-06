@@ -19,15 +19,15 @@ import (
 	"fmt"
 
 	"agola.io/agola/cmd"
-	"agola.io/agola/internal/services/config"
-	"agola.io/agola/internal/services/configstore"
+	// "agola.io/agola/internal/services/config"
+	// "agola.io/agola/internal/services/configstore"
 	//"agola.io/agola/internal/services/executor"
 	//rsexecutor "agola.io/agola/internal/services/executor"
-	"agola.io/agola/internal/services/gateway"
-	"agola.io/agola/internal/services/gitserver"
-	"agola.io/agola/internal/services/notification"
-	rsscheduler "agola.io/agola/internal/services/runservice"
-	"agola.io/agola/internal/services/scheduler"
+	// "agola.io/agola/internal/services/gateway"
+	// "agola.io/agola/internal/services/gitserver"
+	// "agola.io/agola/internal/services/notification"
+	// rsscheduler "agola.io/agola/internal/services/runservice"
+	// "agola.io/agola/internal/services/scheduler"
 	"agola.io/agola/internal/util"
 
 	"github.com/spf13/cobra"
@@ -129,10 +129,10 @@ func serve(cmd *cobra.Command, args []string) error {
 		}
 	}
 
-	c, err := config.Parse(serveOpts.config, serveOpts.components)
+	/* c, err := config.Parse(serveOpts.config, serveOpts.components)
 	if err != nil {
 		return errors.Errorf("config error: %w", err)
-	}
+	} */
 
 	if serveOpts.embeddedEtcd {
 		if err := embeddedEtcd(ctx); err != nil {
@@ -140,13 +140,13 @@ func serve(cmd *cobra.Command, args []string) error {
 		}
 	}
 
-	var rs *rsscheduler.Runservice
+	/* var rs *rsscheduler.Runservice
 	if isComponentEnabled("runservice") {
 		rs, err = rsscheduler.NewRunservice(ctx, &c.Runservice)
 		if err != nil {
 			return errors.Errorf("failed to start run service scheduler: %w", err)
 		}
-	}
+	} */
 
 	/* var ex *rsexecutor.Executor
 	if isComponentEnabled("executor") {
@@ -156,7 +156,7 @@ func serve(cmd *cobra.Command, args []string) error {
 		}
 	} */
 
-	var cs *configstore.Configstore
+	/* var cs *configstore.Configstore
 	if isComponentEnabled("configstore") {
 		cs, err = configstore.NewConfigstore(ctx, &c.Configstore)
 		if err != nil {
@@ -194,17 +194,17 @@ func serve(cmd *cobra.Command, args []string) error {
 		if err != nil {
 			return errors.Errorf("failed to start git server: %w", err)
 		}
-	}
+	} */
 
 	errCh := make(chan error)
 
-	if rs != nil {
+	/* if rs != nil {
 		go func() { errCh <- rs.Run(ctx) }()
-	}
+	} */
 	/* if ex != nil {
 		go func() { errCh <- ex.Run(ctx) }()
 	} */
-	if cs != nil {
+	/* if cs != nil {
 		go func() { errCh <- cs.Run(ctx) }()
 	}
 	if sched != nil {
@@ -218,7 +218,7 @@ func serve(cmd *cobra.Command, args []string) error {
 	}
 	if gs != nil {
 		go func() { errCh <- gs.Run(ctx) }()
-	}
+	} */
 
 	return <-errCh
 }
