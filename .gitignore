@@ -10,3 +10,4 @@ bin/
 tools/
 webbundle/bindata.go
 agola
+agola.exe

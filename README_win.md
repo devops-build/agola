@@ -11,6 +11,12 @@ export GOPROXY=https://goproxy.cn
 go: finding github.com/docker/docker v1.13.1
 # github.com/mattn/go-sqlite3
 exec: "gcc": executable file not found in %PATH%
+
+---
+MINGW_HOME=C:\HashiCorp\Vagrant\embedded\mingw64
+```
+
+```
 # golang.org/x/sys/windows
 D:\gopath\pkg\mod\golang.org\x\sys@v0.0.0-20191024073052-e66fe6eb8e0c\windows\dll_windows.go:21:6: missing function body
 D:\gopath\pkg\mod\golang.org\x\sys@v0.0.0-20191024073052-e66fe6eb8e0c\windows\dll_windows.go:24:6: missing function body
