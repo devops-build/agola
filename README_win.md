@@ -37,3 +37,14 @@ deb9:
 
 $ go build ./cmd/agola
 
+
+==================
+agola.exe serve --components gateway
+
+gateway.go:
+http://localhost:8000/api/v1alpha/logs
+{"message":"empty run id"}
+
+http://localhost:8000/api/v1alpha/remotesources
+[{"id":"6ea611c7-e0c4-4853-9b7f-76e51ff46dc8","name":"gitea","auth_type":"oauth2","registration_enabled":true,"login_enabled":true}]
+

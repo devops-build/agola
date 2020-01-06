@@ -1,0 +1,18 @@
+gateway:
+  apiExposedURL: "http://172.17.0.1:8000"
+  webExposedURL: "http://172.17.0.1:8000"
+  runserviceURL: "http://ag.ten.devcn.fun:4000"
+  configstoreURL: "http://ag.ten.devcn.fun:4002"
+  gitserverURL: "http://ag.ten.devcn.fun:4003"
+
+  web:
+    listenAddress: ":8000"
+  tokenSigning:
+    # hmac or rsa (it possible use rsa)
+    method: hmac
+    # key to use when signing with hmac
+    key: supersecretsigningkey
+    # paths to the private and public keys in pem encoding when using rsa signing
+    #privateKeyPath: /path/to/privatekey.pem
+    #publicKeyPath: /path/to/public.pem
+  adminToken: "admintoken"
