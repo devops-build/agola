@@ -32,3 +32,8 @@ cmd\toolbox\cmd\sleeper.go:44:46: undefined: syscall.WNOHANG
 cmd\toolbox\cmd\sleeper.go:44:62: undefined: syscall.WUNTRACED
 cmd\toolbox\cmd\sleeper.go:44:80: undefined: syscall.WCONTINUED
 ```
+
+deb9:
+
+$ go build ./cmd/agola
+
