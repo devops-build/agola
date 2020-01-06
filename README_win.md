@@ -48,3 +48,15 @@ http://localhost:8000/api/v1alpha/logs
 http://localhost:8000/api/v1alpha/remotesources
 [{"id":"6ea611c7-e0c4-4853-9b7f-76e51ff46dc8","name":"gitea","auth_type":"oauth2","registration_enabled":true,"login_enabled":true}]
 
+
+=============
+webbundle.go:  
+//ref portainer_cn
+fileServerHandler:= http.FileServer(http.Dir("_ex"))  
+		//TODO sam
+		//r.URL.Path = "/"
+
+http://localhost:8000/1.txt
+dsfdsf
+
+http://localhost:8000/README.md

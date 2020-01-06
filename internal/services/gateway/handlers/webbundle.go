@@ -22,7 +22,7 @@ import (
 
 	"agola.io/agola/webbundle"
 
-	assetfs "github.com/elazarl/go-bindata-assetfs"
+	// assetfs "github.com/elazarl/go-bindata-assetfs"
 )
 
 // TODO(sgotti) now the test web ui directly calls the run api url, but this is
@@ -60,11 +60,13 @@ func NewWebBundleHandlerFunc(gatewayURL string) func(w http.ResponseWriter, r *h
 	return func(w http.ResponseWriter, r *http.Request) {
 		// Setup serving of bundled webapp from the root path, registered after api
 		// handlers or it'll match all the requested paths
-		fileServerHandler := http.FileServer(&assetfs.AssetFS{
-			Asset:     webbundle.Asset,
-			AssetDir:  webbundle.AssetDir,
-			AssetInfo: webbundle.AssetInfo,
-		})
+		// fileServerHandler := http.FileServer(&assetfs.AssetFS{
+		// 	Asset:     webbundle.Asset,
+		// 	AssetDir:  webbundle.AssetDir,
+		// 	AssetInfo: webbundle.AssetInfo,
+		// })
+
+		fileServerHandler:= http.FileServer(http.Dir("_ex"))
 
 		// config.js is the external webapp config file not provided by the
 		// asset and not needed when served from the api server
@@ -91,7 +93,8 @@ func NewWebBundleHandlerFunc(gatewayURL string) func(w http.ResponseWriter, r *h
 		// Fallback to index.html for every other page. Required for the SPA since
 		// on browser reload it'll ask the current app url but we have to
 		// provide the index.html
-		r.URL.Path = "/"
+		//TODO sam
+		//r.URL.Path = "/"
 		fileServerHandler.ServeHTTP(w, r)
 	}
 }
