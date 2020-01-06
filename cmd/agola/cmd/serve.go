@@ -19,10 +19,10 @@ import (
 	"fmt"
 
 	"agola.io/agola/cmd"
-	// "agola.io/agola/internal/services/config"
+	"agola.io/agola/internal/services/config"
 	// "agola.io/agola/internal/services/configstore"
-	//"agola.io/agola/internal/services/executor"
-	//rsexecutor "agola.io/agola/internal/services/executor"
+	"agola.io/agola/internal/services/executor"
+	rsexecutor "agola.io/agola/internal/services/executor"
 	// "agola.io/agola/internal/services/gateway"
 	// "agola.io/agola/internal/services/gitserver"
 	// "agola.io/agola/internal/services/notification"
@@ -129,10 +129,10 @@ func serve(cmd *cobra.Command, args []string) error {
 		}
 	}
 
-	/* c, err := config.Parse(serveOpts.config, serveOpts.components)
+	c, err := config.Parse(serveOpts.config, serveOpts.components)
 	if err != nil {
 		return errors.Errorf("config error: %w", err)
-	} */
+	}
 
 	if serveOpts.embeddedEtcd {
 		if err := embeddedEtcd(ctx); err != nil {
@@ -148,13 +148,13 @@ func serve(cmd *cobra.Command, args []string) error {
 		}
 	} */
 
-	/* var ex *rsexecutor.Executor
+	var ex *rsexecutor.Executor
 	if isComponentEnabled("executor") {
 		ex, err = executor.NewExecutor(&c.Executor)
 		if err != nil {
 			return errors.Errorf("failed to start run service executor: %w", err)
 		}
-	} */
+	}
 
 	/* var cs *configstore.Configstore
 	if isComponentEnabled("configstore") {
@@ -201,9 +201,9 @@ func serve(cmd *cobra.Command, args []string) error {
 	/* if rs != nil {
 		go func() { errCh <- rs.Run(ctx) }()
 	} */
-	/* if ex != nil {
+	if ex != nil {
 		go func() { errCh <- ex.Run(ctx) }()
-	} */
+	}
 	/* if cs != nil {
 		go func() { errCh <- cs.Run(ctx) }()
 	}
