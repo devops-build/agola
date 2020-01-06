@@ -23,7 +23,7 @@ import (
 	"agola.io/agola/internal/services/configstore"
 	//"agola.io/agola/internal/services/executor"
 	//rsexecutor "agola.io/agola/internal/services/executor"
-	"agola.io/agola/internal/services/gateway"
+	// "agola.io/agola/internal/services/gateway"
 	"agola.io/agola/internal/services/gitserver"
 	"agola.io/agola/internal/services/notification"
 	rsscheduler "agola.io/agola/internal/services/runservice"
@@ -180,13 +180,13 @@ func serve(cmd *cobra.Command, args []string) error {
 		}
 	}
 
-	var gw *gateway.Gateway
+	/* var gw *gateway.Gateway
 	if isComponentEnabled("gateway") {
 		gw, err = gateway.NewGateway(c)
 		if err != nil {
 			return errors.Errorf("failed to start gateway: %w", err)
 		}
-	}
+	} */
 
 	var gs *gitserver.Gitserver
 	if isComponentEnabled("gitserver") {
@@ -213,9 +213,9 @@ func serve(cmd *cobra.Command, args []string) error {
 	if ns != nil {
 		go func() { errCh <- ns.Run(ctx) }()
 	}
-	if gw != nil {
+	/* if gw != nil {
 		go func() { errCh <- gw.Run(ctx) }()
-	}
+	} */
 	if gs != nil {
 		go func() { errCh <- gs.Run(ctx) }()
 	}
