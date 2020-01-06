@@ -21,10 +21,10 @@ import (
 	"os"
 	"path"
 
-	"agola.io/agola/internal/etcd"
+	//"agola.io/agola/internal/etcd"
 	"agola.io/agola/internal/objectstorage"
 	"agola.io/agola/internal/services/config"
-	"go.uber.org/zap"
+	//"go.uber.org/zap"
 	errors "golang.org/x/xerrors"
 )
 
@@ -109,7 +109,7 @@ func NewObjectStorage(c *config.ObjectStorage) (*objectstorage.ObjStorage, error
 	return objectstorage.NewObjStorage(ost, "/"), nil
 }
 
-func NewEtcd(c *config.Etcd, logger *zap.Logger, prefix string) (*etcd.Store, error) {
+/* func NewEtcd(c *config.Etcd, logger *zap.Logger, prefix string) (*etcd.Store, error) {
 	e, err := etcd.New(etcd.Config{
 		Logger:        logger,
 		Endpoints:     c.Endpoints,
@@ -124,4 +124,4 @@ func NewEtcd(c *config.Etcd, logger *zap.Logger, prefix string) (*etcd.Store, er
 	}
 
 	return e, nil
-}
+} */
