@@ -24,10 +24,10 @@ import (
 	//"agola.io/agola/internal/services/executor"
 	//rsexecutor "agola.io/agola/internal/services/executor"
 	"agola.io/agola/internal/services/gateway"
-	"agola.io/agola/internal/services/gitserver"
-	"agola.io/agola/internal/services/notification"
+	//"agola.io/agola/internal/services/gitserver"
+	//"agola.io/agola/internal/services/notification"
 	//rsscheduler "agola.io/agola/internal/services/runservice"
-	"agola.io/agola/internal/services/scheduler"
+	//"agola.io/agola/internal/services/scheduler"
 	"agola.io/agola/internal/util"
 
 	"github.com/spf13/cobra"
@@ -164,21 +164,21 @@ func serve(cmd *cobra.Command, args []string) error {
 		}
 	} */
 
-	var sched *scheduler.Scheduler
+	/* var sched *scheduler.Scheduler
 	if isComponentEnabled("scheduler") {
 		sched, err = scheduler.NewScheduler(&c.Scheduler)
 		if err != nil {
 			return errors.Errorf("failed to start scheduler: %w", err)
 		}
-	}
+	} */
 
-	var ns *notification.NotificationService
+	/* var ns *notification.NotificationService
 	if isComponentEnabled("notification") {
 		ns, err = notification.NewNotificationService(c)
 		if err != nil {
 			return errors.Errorf("failed to start notification service: %w", err)
 		}
-	}
+	} */
 
 	var gw *gateway.Gateway
 	if isComponentEnabled("gateway") {
@@ -188,13 +188,13 @@ func serve(cmd *cobra.Command, args []string) error {
 		}
 	}
 
-	var gs *gitserver.Gitserver
+	/* var gs *gitserver.Gitserver
 	if isComponentEnabled("gitserver") {
 		gs, err = gitserver.NewGitserver(&c.Gitserver)
 		if err != nil {
 			return errors.Errorf("failed to start git server: %w", err)
 		}
-	}
+	} */
 
 	errCh := make(chan error)
 
@@ -207,18 +207,18 @@ func serve(cmd *cobra.Command, args []string) error {
 	/* if cs != nil {
 		go func() { errCh <- cs.Run(ctx) }()
 	} */
-	if sched != nil {
+	/* if sched != nil {
 		go func() { errCh <- sched.Run(ctx) }()
-	}
-	if ns != nil {
+	} */
+	/* if ns != nil {
 		go func() { errCh <- ns.Run(ctx) }()
-	}
+	} */
 	if gw != nil {
 		go func() { errCh <- gw.Run(ctx) }()
 	}
-	if gs != nil {
+	/* if gs != nil {
 		go func() { errCh <- gs.Run(ctx) }()
-	}
+	} */
 
 	return <-errCh
 }
