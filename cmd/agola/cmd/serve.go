@@ -26,7 +26,7 @@ import (
 	"agola.io/agola/internal/services/gateway"
 	"agola.io/agola/internal/services/gitserver"
 	"agola.io/agola/internal/services/notification"
-	rsscheduler "agola.io/agola/internal/services/runservice"
+	//rsscheduler "agola.io/agola/internal/services/runservice"
 	"agola.io/agola/internal/services/scheduler"
 	"agola.io/agola/internal/util"
 
@@ -140,13 +140,13 @@ func serve(cmd *cobra.Command, args []string) error {
 		}
 	}
 
-	var rs *rsscheduler.Runservice
+	/* var rs *rsscheduler.Runservice
 	if isComponentEnabled("runservice") {
 		rs, err = rsscheduler.NewRunservice(ctx, &c.Runservice)
 		if err != nil {
 			return errors.Errorf("failed to start run service scheduler: %w", err)
 		}
-	}
+	} */
 
 	/* var ex *rsexecutor.Executor
 	if isComponentEnabled("executor") {
@@ -198,9 +198,9 @@ func serve(cmd *cobra.Command, args []string) error {
 
 	errCh := make(chan error)
 
-	if rs != nil {
+	/* if rs != nil {
 		go func() { errCh <- rs.Run(ctx) }()
-	}
+	} */
 	/* if ex != nil {
 		go func() { errCh <- ex.Run(ctx) }()
 	} */
