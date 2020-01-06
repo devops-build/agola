@@ -20,7 +20,7 @@ import (
 
 	"agola.io/agola/cmd"
 	"agola.io/agola/internal/services/config"
-	"agola.io/agola/internal/services/configstore"
+	//"agola.io/agola/internal/services/configstore"
 	//"agola.io/agola/internal/services/executor"
 	//rsexecutor "agola.io/agola/internal/services/executor"
 	"agola.io/agola/internal/services/gateway"
@@ -156,13 +156,13 @@ func serve(cmd *cobra.Command, args []string) error {
 		}
 	} */
 
-	var cs *configstore.Configstore
+	/* var cs *configstore.Configstore
 	if isComponentEnabled("configstore") {
 		cs, err = configstore.NewConfigstore(ctx, &c.Configstore)
 		if err != nil {
 			return errors.Errorf("failed to start config store: %w", err)
 		}
-	}
+	} */
 
 	var sched *scheduler.Scheduler
 	if isComponentEnabled("scheduler") {
@@ -204,9 +204,9 @@ func serve(cmd *cobra.Command, args []string) error {
 	/* if ex != nil {
 		go func() { errCh <- ex.Run(ctx) }()
 	} */
-	if cs != nil {
+	/* if cs != nil {
 		go func() { errCh <- cs.Run(ctx) }()
-	}
+	} */
 	if sched != nil {
 		go func() { errCh <- sched.Run(ctx) }()
 	}
