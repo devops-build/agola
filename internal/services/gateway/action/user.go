@@ -744,12 +744,7 @@ func (h *ActionHandler) HandleOauth2Callback(ctx context.Context, code, state st
 		return nil, errors.Errorf("failed to create oauth2 source: %w", err)
 	}
 
-	//TODO01: ERR LINK?
-	//http://ag.ten.devcn.fun:81/oauth2/callback?code=
-	//l5eLqfLl_tN5R-aWJ4AOFlb0pPKIGRmIYBr1PvKOiaU%3D&state=
-	//eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1Nzg1MzEyNjUsInJlbW90ZV9zb3VyY2VfbmFtZSI6ImdpdGVhIiwicmVxdWVzdCI6IntcIlVzZXJOYW1lXCI6XCJzYW1cIixcIlJlbW90ZVNvdXJjZU5hbWVcIjpcImdpdGVhXCIsXCJVc2VyQWNjZXNzVG9rZW5cIjpcIlwiLFwiT2F1dGgyQWNjZXNzVG9rZW5cIjpcIlwiLFwiT2F1dGgyUmVmcmVzaFRva2VuXCI6XCJcIixcIk9hdXRoMkFjY2Vzc1Rva2VuRXhwaXJlc0F0XCI6XCIwMDAxLTAxLTAxVDAwOjAwOjAwWlwifSIsInJlcXVlc3RfdHlwZSI6InJlZ2lzdGVydXNlciJ9.kYT2m23G1x2T1iswOzkL1SD_z-mmHanjjJRnNCuSI9o
-	
-	//or: call gitea?
+	//TODO01: ERR LINK?(not this, it's in back-soft-req)
 	oauth2Token, err := oauth2Source.RequestOauth2Token(h.webExposedURL+"/oauth2/callback", code)
 	if err != nil {
 		return nil, err
