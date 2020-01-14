@@ -381,8 +381,10 @@ func (r *ReadDB) handleEvents(ctx context.Context) error {
 			return errors.Errorf("no runsequence in etcd, reinitializing.")
 		}
 
+		//TODO10 : id check err lengh, need epoch
 		lastRunSequence, err := sequence.Parse(lastRun.ID)
 		if err != nil {
+			r.SetInitialized(false) //add this
 			return err
 		}
 		// check that the run sequence epoch isn't different than the current one (this means etcd
