@@ -14,7 +14,7 @@ WORKDIR /agola
 
 # use go modules
 ENV GO111MODULE=on
-ENV GOPROXY=https://goproxy.io
+ENV GOPROXY=https://goproxy.cn
 
 # only copy go.mod and go.sum
 COPY go.mod .
@@ -27,7 +27,7 @@ RUN go mod download
 FROM build_base AS server_builder
 # use go modules
 ENV GO111MODULE=on
-ENV GOPROXY=https://goproxy.io
+ENV GOPROXY=https://goproxy.cn
 # copy all the sources
 COPY . .
 
