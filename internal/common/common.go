@@ -17,15 +17,15 @@ package common
 import (
 	"io"
 	"io/ioutil"
-	"net/url"
+	// "net/url"
 	"os"
 	"path"
 
-	"agola.io/agola/internal/etcd"
-	"agola.io/agola/internal/objectstorage"
-	"agola.io/agola/internal/services/config"
-	"go.uber.org/zap"
-	errors "golang.org/x/xerrors"
+	// "agola.io/agola/internal/etcd"
+	// "agola.io/agola/internal/objectstorage"
+	// "agola.io/agola/internal/services/config"
+	// "go.uber.org/zap"
+	// errors "golang.org/x/xerrors"
 )
 
 const (
@@ -73,55 +73,55 @@ func WriteFileAtomic(filename string, data []byte, perm os.FileMode) error {
 		})
 }
 
-func NewObjectStorage(c *config.ObjectStorage) (*objectstorage.ObjStorage, error) {
-	var (
-		err error
-		ost objectstorage.Storage
-	)
+// func NewObjectStorage(c *config.ObjectStorage) (*objectstorage.ObjStorage, error) {
+// 	var (
+// 		err error
+// 		ost objectstorage.Storage
+// 	)
 
-	switch c.Type {
-	case config.ObjectStorageTypePosix:
-		ost, err = objectstorage.NewPosix(c.Path)
-		if err != nil {
-			return nil, errors.Errorf("failed to create posix object storage: %w", err)
-		}
-	case config.ObjectStorageTypeS3:
-		// minio golang client doesn't accept an url as an endpoint
-		endpoint := c.Endpoint
-		secure := !c.DisableTLS
-		if u, err := url.Parse(c.Endpoint); err == nil {
-			endpoint = u.Host
-			switch u.Scheme {
-			case "https":
-				secure = true
-			case "http":
-				secure = false
-			default:
-				return nil, errors.Errorf("wrong s3 endpoint scheme %q (must be http or https)", u.Scheme)
-			}
-		}
-		ost, err = objectstorage.NewS3(c.Bucket, c.Location, endpoint, c.AccessKey, c.SecretAccessKey, secure)
-		if err != nil {
-			return nil, errors.Errorf("failed to create s3 object storage: %w", err)
-		}
-	}
+// 	switch c.Type {
+// 	case config.ObjectStorageTypePosix:
+// 		ost, err = objectstorage.NewPosix(c.Path)
+// 		if err != nil {
+// 			return nil, errors.Errorf("failed to create posix object storage: %w", err)
+// 		}
+// 	case config.ObjectStorageTypeS3:
+// 		// minio golang client doesn't accept an url as an endpoint
+// 		endpoint := c.Endpoint
+// 		secure := !c.DisableTLS
+// 		if u, err := url.Parse(c.Endpoint); err == nil {
+// 			endpoint = u.Host
+// 			switch u.Scheme {
+// 			case "https":
+// 				secure = true
+// 			case "http":
+// 				secure = false
+// 			default:
+// 				return nil, errors.Errorf("wrong s3 endpoint scheme %q (must be http or https)", u.Scheme)
+// 			}
+// 		}
+// 		ost, err = objectstorage.NewS3(c.Bucket, c.Location, endpoint, c.AccessKey, c.SecretAccessKey, secure)
+// 		if err != nil {
+// 			return nil, errors.Errorf("failed to create s3 object storage: %w", err)
+// 		}
+// 	}
 
-	return objectstorage.NewObjStorage(ost, "/"), nil
-}
+// 	return objectstorage.NewObjStorage(ost, "/"), nil
+// }
 
-func NewEtcd(c *config.Etcd, logger *zap.Logger, prefix string) (*etcd.Store, error) {
-	e, err := etcd.New(etcd.Config{
-		Logger:        logger,
-		Endpoints:     c.Endpoints,
-		Prefix:        prefix,
-		CertFile:      c.TLSCertFile,
-		KeyFile:       c.TLSKeyFile,
-		CAFile:        c.TLSCAFile,
-		SkipTLSVerify: c.TLSSkipVerify,
-	})
-	if err != nil {
-		return nil, errors.Errorf("failed to create etcd store: %w", err)
-	}
+// func NewEtcd(c *config.Etcd, logger *zap.Logger, prefix string) (*etcd.Store, error) {
+// 	e, err := etcd.New(etcd.Config{
+// 		Logger:        logger,
+// 		Endpoints:     c.Endpoints,
+// 		Prefix:        prefix,
+// 		CertFile:      c.TLSCertFile,
+// 		KeyFile:       c.TLSKeyFile,
+// 		CAFile:        c.TLSCAFile,
+// 		SkipTLSVerify: c.TLSSkipVerify,
+// 	})
+// 	if err != nil {
+// 		return nil, errors.Errorf("failed to create etcd store: %w", err)
+// 	}
 
-	return e, nil
-}
+// 	return e, nil
+// }
