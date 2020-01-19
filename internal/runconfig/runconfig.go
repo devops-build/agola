@@ -112,7 +112,17 @@ Host $AGOLA_GIT_HOST
 EOF
 )
 
-git clone %s $AGOLA_REPOSITORY_URL .
+##cache_restore exist in ws.
+set +e
+git branch
+if [ $? -ne 0 ]; then
+	echo "fail"
+	set -e
+	git clone %s $AGOLA_REPOSITORY_URL .
+else
+    echo "success"
+fi
+
 git fetch origin $AGOLA_GIT_REF
 
 if [ -n "$AGOLA_GIT_COMMITSHA" ]; then
