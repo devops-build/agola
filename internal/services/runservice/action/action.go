@@ -190,7 +190,11 @@ func (h *ActionHandler) newRun(ctx context.Context, req *RunCreateRequest) (*typ
 	if err != nil {
 		return nil, err
 	}
-	id := seq.String()
+	//TODO2
+	//id := seq.String()
+	id := seq.StringCut()
+	//uuid2:= util.DefaultUUIDGenerator{}
+	//id := "run."+uuid2.Sha1sCut(seq.String())
 
 	if err := runconfig.CheckRunConfigTasks(rcts); err != nil {
 		h.log.Errorf("check run config tasks failed: %+v", err)
@@ -232,7 +236,11 @@ func (h *ActionHandler) recreateRun(ctx context.Context, req *RunCreateRequest) 
 	if err != nil {
 		return nil, err
 	}
-	id := seq.String()
+	//TODO3
+	//id := seq.String()
+	id := seq.StringCut()
+	//uuid2:= util.DefaultUUIDGenerator{}
+	//id := "run."+uuid2.Sha1sCut(seq.String())
 
 	// fetch the existing runconfig and run
 	h.log.Infof("creating run from existing run")
@@ -299,8 +307,11 @@ func recreateRun(uuid util.UUIDGenerator, run *types.Run, rc *types.RunConfig, n
 			if !ok {
 				panic(fmt.Errorf("no runconfig task %q", rt.ID))
 			}
+			//TODO4
+			uuid2:= util.DefaultUUIDGenerator{}
 			// change rct id
-			rct.ID = uuid.New(rct.Name).String()
+			//rct.ID = uuid.New(rct.Name).String()
+			rct.ID = "tsk."+uuid2.Sha1sCut(uuid.New(rct.Name).String())
 
 			// update runconfig with new tasks
 			delete(rc.Tasks, rt.ID)
@@ -337,8 +348,11 @@ func recreateRun(uuid util.UUIDGenerator, run *types.Run, rc *types.RunConfig, n
 
 	for rcTaskToRecreate := range rcTasksToRecreate {
 		rct := rc.Tasks[rcTaskToRecreate]
+		//TODO5
+		uuid2:= util.DefaultUUIDGenerator{}
 		// change rct id
-		rct.ID = uuid.New(rct.Name).String()
+		//rct.ID = uuid.New(rct.Name).String()
+		rct.ID = "tsk."+uuid2.Sha1sCut(uuid.New(rct.Name).String())
 
 		// update runconfig with new tasks
 		delete(rc.Tasks, rcTaskToRecreate)
